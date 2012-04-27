@@ -1,0 +1,39 @@
+# -*- mode: shell-script -*-
+
+EUDIR="$HOME/projects/scripts/euler"
+
+euler () {
+  take "$EUDIR/$1"
+  if [ ! -z "$2" ]; then
+    if [ ! -f "$1"."$2" ]; then
+      if [ "$2" == "rb" ]; then
+        echo -e "#!/usr/bin/env ruby -w\n\n=begin\n\nProblem $1 ()\n\n\n=end\n" > "$1"."$2"
+      else
+        touch "$1"."$2"
+      fi
+    fi
+  fi
+
+  euls "$1"
+}
+
+euls () {
+  ls -l "$EUDIR/$1"
+}
+
+eurun () {
+  if [ ! -z "$1" ]; then
+    local CODE="$EUDIR/$1/$1.rb"
+    if [ -f $CODE ]; then
+      cd "$EUDIR/$1/"
+      # ls -l
+      echo -e "\nRunning Problem $1\n"
+      sleep 1
+      time ruby $CODE
+    else
+      echo "This problem is not written in Ruby."
+    fi
+  else
+    echo "You must also include problem number."
+  fi
+}
