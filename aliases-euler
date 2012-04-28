@@ -8,7 +8,7 @@ euler () {
   if [ ! -z "$2" ]; then
     if [ ! -f "$CODE" ]; then
       if [ "$2" == "rb" ]; then
-        echo -e "#!/usr/bin/env ruby -w\n\n=begin\n\nProblem $1 ()\n\n---\n\nAnswer:\n\n\n=end\n" > "$CODE"
+        echo -e "#!/usr/bin/env ruby -w\n\n=begin\n\nProblem $1 ()\n\n---\n\n\n---\n\nAnswer:\n\n\n=end\n\nt = Time.now\n\n\nputs \"\nTook: #{(Time.now - t)} secs.\""  > "$CODE"
       else
         touch "$CODE"
       fi
@@ -27,7 +27,6 @@ euem () {
     if [ ! -z "$2" ]; then
       local CODE="$EUDIR/$1/$1.$2"
       cd "$EUDIR/$1"
-      ls -l
       if [ -f $CODE ]; then
         ec "$CODE"
       else
