@@ -3,13 +3,14 @@
 EUDIR="$HOME/projects/scripts/euler"
 
 euler () {
+  local CODE="$EUDIR/$1/$1.$2"
   take "$EUDIR/$1"
   if [ ! -z "$2" ]; then
-    if [ ! -f "$1"."$2" ]; then
+    if [ ! -f "$CODE" ]; then
       if [ "$2" == "rb" ]; then
-        echo -e "#!/usr/bin/env ruby -w\n\n=begin\n\nProblem $1 ()\n\n\n=end\n" > "$1"."$2"
+        echo -e "#!/usr/bin/env ruby -w\n\n=begin\n\nProblem $1 ()\n\n---\n\nAnswer:\n\n\n=end\n" > "$CODE"
       else
-        touch "$1"."$2"
+        touch "$CODE"
       fi
     fi
   fi
@@ -19,6 +20,26 @@ euler () {
 
 euls () {
   ls -l "$EUDIR/$1"
+}
+
+euem () {
+  if [ ! -z "$1" ]; then
+    if [ ! -z "$2" ]; then
+      local CODE="$EUDIR/$1/$1.$2"
+      cd "$EUDIR/$1"
+      ls -l
+      if [ -f $CODE ]; then
+        ec "$CODE"
+      else
+        touch "$CODE"
+        ec "$CODE"
+      fi
+    else
+      echo "You must include program extension."
+    fi
+  else
+    echo "You must also include problem number."
+  fi
 }
 
 eurun () {
