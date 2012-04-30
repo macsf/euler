@@ -48,10 +48,8 @@ FILE = 'names.txt'
 
 sum = 0
 
-names = File.open(FILE).gets.gsub('"', '').split(',').sort
-
-(0..names.size - 1).each do |n|
-  sum += (n + 1) * names[n].split('').map(&:char_pos).inject(:+)
+File.open(FILE).gets.gsub('"', '').split(',').sort.each_with_index do |n, i|
+  sum += (i + 1) * n.split('').map(&:char_pos).inject(:+)
 end
 
 puts sum
