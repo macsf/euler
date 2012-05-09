@@ -8,4 +8,4 @@
 
 LIMIT = 1000
 
-print (1..LIMIT).to_a.find_all { |i| (i % 3 == 0 || i % 5 == 0) }.inject(:+)
+print (1..LIMIT).find_all { |i| (i % 3 == 0 || i % 5 == 0) }.inject(:+)
