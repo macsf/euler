@@ -1,3 +1,13 @@
+/*
+  sum of square = 338350
+  square of sum = 25502500
+  diff = 25164150
+
+  real    0m00m0.004s
+  user    0m00m0.004s
+  sys     0m00m0.004s
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
