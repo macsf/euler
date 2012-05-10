@@ -10,7 +10,7 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 
 Answer:
 
-4613732
+40824
 
 Took: 0.018102 secs.
 
