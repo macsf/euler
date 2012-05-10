@@ -6,6 +6,8 @@
 ;; user0m0.048s
 ;; sys0m0.024s
 
+(defvar limit)
+
 (setq limit 1000)
 (print (loop for i from 1 to limit
           when (or (= (mod i 3) 0)
