@@ -26,7 +26,7 @@ Took: 0.025657 secs.
 
 t = Time.now
 
-puts [*1..1000].reduce(0){|sum, n| sum + n**n}.to_s[-10..-1]
+puts [*1..1000].inject{|sum, n| sum + n**n}.to_s[-10..-1]
 
 
 puts "\nTook: #{(Time.now - t)} secs."
