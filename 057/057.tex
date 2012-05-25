@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+
+\usepackage[cm,empty]{fullpage}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+
+\lstset{
+	basicstyle=\footnotesize,
+	frame=single,
+	captionpos=b
+}
+
+\parskip 0.1in
+
+\title{Solving Euler 53 With Scheme}
+\author{Sutthichok Wongthavorn}
+
+\begin{document}
+\maketitle
+
+You know what, I’ve just managed to solve a \emph{Project Euler} problem using Scheme for the first time! First code outside SICP!! Exciting.
+
+{\bf Problem 57} says a square root of two can be expressed as an infinite continued fraction. It wants me to find out how many fractions within the first 1,000 expansions that numerator has more digits than the denominator.
+
+$$\mathtt{\sqrt 2 = 1 + 1 / (2 + 1 / (2 + 1 / (2 + ...))) = 1.414212...}$$
+
+First 4 expansions turn out to be something like this.
+
+\begin{description}
+\item[(1st)] \texttt{1 + 1/2 = 3/2 = 1.5}
+\item[(2nd)] \texttt{1 + 1/(2 + 1/2) = 7/5 = 1.4}
+\item[(3rd)] \texttt{1 + 1/(2 + 1/(2 + 1/2)) = 17/12 = 1.41666...}
+\item[(4th)] \texttt{1 + 1/(2 + 1/(2 + 1/(2 + 1/2))) = 41/19 = 1.41379...}
+\end{description}
+
+Not until the 8th expansion, \texttt{1393/985}, that the numerator has more digits than denominator.
+
+First I thought about attacking this problem with the usual tool, Ruby. But after looking closely at the equation, I see recursion. So I think, I could try this one with Scheme. After shuffling around the parenthesis for several hours (since last night and continued this afternoon), I came up with this.
+
+\lstset{language=Scheme,caption={Project Euler 057 in Scheme}}
+\begin{lstlisting}
+;; Find nth expansion of square root x
+(define (sqrte x n)
+  (define (iter expansion)
+    (if (= expansion 0)
+        0
+        (/ 1 (+ x (iter (- expansion 1))))))
+  (+ 1 (iter n)))
+
+(define (euler57 n max)
+  (define (iter times count)
+    (define sq 0)
+    (if (> times max)
+        count
+        (begin
+          (set! sq (sqrte n times))
+          (if (>
+               (string-length (number->string (numerator sq)))
+               (string-length (number->string (denominator sq))))
+              (set! count (+ 1 count)))
+          (iter (+ 1 times) count))))
+  (iter 0 0))
+
+(display (euler57 2 1000))
+\end{lstlisting}
+
+The code doesn’t look too messy. So I’m quite happy with it.
+
+\end{document}
