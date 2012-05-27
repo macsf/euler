@@ -12,3 +12,6 @@ for n in range(1, LIMIT + 1):
         sum = sum + n
 
 print sum
+
+# one-liner, not faster
+# print sum(n for n in range(LIMIT) if n % 3 == 0 or n % 5 == 0)
