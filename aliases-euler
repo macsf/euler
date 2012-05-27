@@ -1,6 +1,6 @@
 # -*- mode: shell-script -*-
 
-EUDIR="$HOME/projects/scripts/euler"
+EUDIR="$HOME/Dropbox/WIP/programming/euler"
 
 euler () {
   local CODE="$EUDIR/$1/$1.$2"
