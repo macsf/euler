@@ -137,7 +137,7 @@ def make_num2(n, d)
   primes.uniq                   # possibility of duplicates, take only once
 end
 
-n = 4
+n = 10
 
 puts "\nSum of #{n}-digit primes with most repeating digits = #{prime_sum(n)}."
 
