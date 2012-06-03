@@ -24,6 +24,7 @@ Took: 0.019291 secs.
 
 * conincidentally found out that the remainders are the product of a and i,
 where i = 2, 2, 4, 4, 6, 6, 8, 8, ....
+* probably not the right way to come up with the answer, but it works.
 
 06/02/2012
 
@@ -45,7 +46,7 @@ sum = 0
 #   max_rem
 # end
 
-# (1..1000).each do |a|
+# (3..1000).each do |a|
 #   # sum += find_remainder(a)
 #   max_rem = find_remainder(a)
 #   sum += max_rem
