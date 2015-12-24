@@ -6,7 +6,7 @@
 
 code = []
 
-File.new('keylog.txt').each do |line|
+File.new(File.dirname(__FILE__) + '/keylog.txt').each do |line|
   if code.length == 0
     code = line.chomp.split('')
   else
