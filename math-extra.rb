@@ -16,3 +16,21 @@ def list_fibs(max)
 
   fib_nums
 end
+class Integer
+  def prime_factorization(n)
+    def factor_generator(n)
+      for prime_candidate in Prime::Generator23.new
+        break if prime_candidate > n
+        begin
+          div, mod = n.divmod(prime_candidate)
+          if mod == 0
+            yield prime_candidate
+            n = div
+          end
+        end while mod == 0
+      end
+    end
+
+    to_enum(:factor_generator, n).to_a
+  end
+end
